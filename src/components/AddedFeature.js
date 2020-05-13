@@ -1,13 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { removeFeature } from '../actions/featureActions';
 
 const AddedFeature = props => {
   return (
     <li>
       {/* Add an onClick to run a function to remove a feature */}
-      <button className="button">X</button>
+      <button className="button" >X</button>
       {props.feature.name}
     </li>
   );
 };
 
-export default AddedFeature;
+// it might be a good idea to leave the individial feature components as functional components
+const mapStateToProps = state => {
+  console.log('AddedFeature.js mSTP is running...', { state });
+
+  return {
+    feature: state.car.features
+  }
+};
+
+export default connect(
+  mapStateToProps,
+{})
+(AddedFeature);
